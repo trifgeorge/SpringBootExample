@@ -1,14 +1,11 @@
 package com.spring.boot.example.util;
 
+import com.spring.boot.example.DefaultAbstractContextTestClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest
-@ActiveProfiles("test")
-public class SpringUtilsTest {
+public class SpringUtilsTest extends DefaultAbstractContextTestClass {
 
     @Autowired
     SpringUtils springUtils;

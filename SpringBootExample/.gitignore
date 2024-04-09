@@ -2,6 +2,8 @@
 /.idea/
 #target
 /target/
+#idea
+/.logs/
 
 # Compiled class file
 *.class
