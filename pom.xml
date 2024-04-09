@@ -9,25 +9,41 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>3.2.1</spring.boot.version>
         <apache.commons.lang.version>3.14.0</apache.commons.lang.version>
+        <mave.plugin.version>3.2.0</mave.plugin.version>
     </properties>
 
 
     <dependencies>
+        <!-- SPRING BOOT WEB  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring.boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- SPRING BOOT LOG4J2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <!-- SPRING BOOT AUTO-CONFIGURE -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
+        <!-- SPRING BOOT TEST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -41,6 +57,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- APACHE COMMONS -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -68,7 +85,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-help-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${mave.plugin.version}</version>
                     <executions>
                         <execution>
                             <id>show-profiles</id>
@@ -82,7 +99,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${mave.plugin.version}</version>
                     <configuration>
                         <archive>
                             <manifest>
@@ -99,7 +116,6 @@
                     <version>${spring.boot.version}</version>
                     <configuration>
                         <mainClass>com.spring.boot.example.SpringBootExample</mainClass>
-
                     </configuration>
                     <executions>
                         <execution>
@@ -131,7 +147,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-help-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${mave.plugin.version}</version>
                     <executions>
                         <execution>
                             <id>show-profiles</id>
@@ -145,7 +161,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${mave.plugin.version}</version>
                     <configuration>
                         <archive>
                             <manifest>
