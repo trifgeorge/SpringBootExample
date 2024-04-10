@@ -7,7 +7,7 @@ A basic Spring Boot example that can be copied and developed.
 ## Table of Contents
 
 - [Installation](#installation)
-- [Further Development:](#furtherdevelopment:)
+- [Further Development](#further-development)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
 - [Testing](#testing)
@@ -18,7 +18,7 @@ To build the project `mvn clean install`(default profile is set to `DEV`).
 
 To build and run the project `mvn spring-boot:run`(default profile is set to `DEV`).
 
-If you need to change or add a new profile please check [Configuration](#configuration)
+If you need to change or add a new profile please check [Configuration](#configuration).
 
 ## Further Development
 
