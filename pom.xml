@@ -15,6 +15,8 @@
         <spring.boot.version>3.2.1</spring.boot.version>
         <apache.commons.lang.version>3.14.0</apache.commons.lang.version>
         <mave.plugin.version>3.2.0</mave.plugin.version>
+        <postgresql.version>42.7.3</postgresql.version>
+        <apache.commons.collection.version>4.4</apache.commons.collection.version>
     </properties>
 
 
@@ -57,11 +59,28 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- APACHE COMMONS -->
+        <!-- SPRING BOOT JPA  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <!-- APACHE COMMONS LANG-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache.commons.lang.version}</version>
+        </dependency>
+        <!-- APACHE COMMONS COLLECTIONS-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${apache.commons.collection.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
     </dependencies>
 
