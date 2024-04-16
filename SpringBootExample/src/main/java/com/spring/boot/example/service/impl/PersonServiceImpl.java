@@ -1,13 +1,13 @@
 package com.spring.boot.example.service.impl;
 
-import com.spring.boot.example.model.Person;
+import com.spring.boot.example.model.dto.PersonDTO;
+import com.spring.boot.example.model.entity.Person;
 import com.spring.boot.example.repository.PersonRepository;
 import com.spring.boot.example.service.PersonService;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +27,10 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> getAll() {
         return this.personRepository.findAll();
+    }
+
+    @Override
+    public PersonDTO findOne(Long id) {
+        return null;
     }
 }
