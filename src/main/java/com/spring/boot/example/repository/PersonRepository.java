@@ -1,6 +1,6 @@
 package com.spring.boot.example.repository;
 
-import com.spring.boot.example.model.Person;
+import com.spring.boot.example.model.entity.Person;
 import org.springframework.stereotype.Repository;
 
 @Repository

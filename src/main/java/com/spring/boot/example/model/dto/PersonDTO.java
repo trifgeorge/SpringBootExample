@@ -1,34 +1,17 @@
-package com.spring.boot.example.model;
+package com.spring.boot.example.model.dto;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "person")
-public class Person implements BaseModel<Long>{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PersonDTO {
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "age")
     private int age;
-    @Column(name = "email")
     private String email;
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
-        this.id=id;
+        this.id = id;
     }
 
     public String getName() {
@@ -57,7 +40,7 @@ public class Person implements BaseModel<Long>{
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "PersonDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +

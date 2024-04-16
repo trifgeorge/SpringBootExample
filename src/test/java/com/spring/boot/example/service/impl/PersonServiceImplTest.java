@@ -1,7 +1,7 @@
 package com.spring.boot.example.service.impl;
 
 import com.spring.boot.example.DefaultAbstractContextTestClass;
-import com.spring.boot.example.model.Person;
+import com.spring.boot.example.model.entity.Person;
 import com.spring.boot.example.service.PersonService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.Assertions;
