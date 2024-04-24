@@ -37,12 +37,11 @@ public class BrowseExample implements Client {
         try{
             BrowseResult browseResult = client.browse(browse).get();
             List<ReferenceDescription> references = Arrays.asList(browseResult.getReferences());
-            log.info(references.size());
             for(ReferenceDescription rd: references){
-                log.info("{} Node={}", indent, rd.getBrowseName().getName());
+                log.info("{} Node={} Identifier={}", indent, rd.getBrowseName().getName(), rd.getNodeId().getIdentifier());
 
                 rd.getNodeId().toNodeId(client.getNamespaceTable())
-                        .ifPresent(nodeId -> browseNode(indent + "  ", client, nodeId));
+                        .ifPresent(nodeId -> browseNode(indent + "--", client, nodeId));
             }
         } catch (ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);

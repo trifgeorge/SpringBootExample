@@ -27,7 +27,7 @@ public class BrowseAsyncExample implements Client {
 
         browseRecursive(client, tree).get();
 
-        traverse(tree, 0, (depth, n)->log.info((indent(depth) + n.getBrowseName().getName())));
+        traverse(tree, 0, (depth, n)->log.info("{} Node={} Identifier={}", indent(depth), n.getBrowseName().getName(), n.getNodeId().getIdentifier()));
     }
 
 
@@ -50,7 +50,7 @@ public class BrowseAsyncExample implements Client {
     private static String indent(int depth) {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < depth; i++) {
-            s.append("  ");
+            s.append("--");
         }
         return s.toString();
     }

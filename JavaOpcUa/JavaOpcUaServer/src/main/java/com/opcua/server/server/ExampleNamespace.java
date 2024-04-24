@@ -1,5 +1,6 @@
 package com.opcua.server.server;
 
+import com.opcua.server.server.methods.AddMethod;
 import com.opcua.server.server.methods.GenerateEventMethod;
 import com.opcua.server.server.methods.SqrtMethod;
 import com.opcua.server.server.types.CustomEnumType;
@@ -179,35 +180,69 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
             false
         ));
 
-        // Add the rest of the nodes
-        addVariableNodes(folderNode);
 
-        addSqrtMethod(folderNode);
+        addArrayNodes(folderNode);
+        addScalarNodes(folderNode);
+        addAdminReadableNodes(folderNode);
+        addAdminWritableNodes(folderNode);
+        addDynamicNodes(folderNode);
+        addDataAccessNodes(folderNode);
+        addWriteOnlyNodes(folderNode);
+        addMethodNodes(folderNode);
+        addCustomTypes(folderNode);
 
-        addGenerateEventMethod(folderNode);
+        addCustomObjectTypeAndInstance(folderNode);
+    }
+
+    private void addCustomTypes(UaFolderNode folderNode) {
+
+        //Create custom types folder
+        UaFolderNode customTypesFolder = new UaFolderNode(
+                getNodeContext(),
+                newNodeId("HelloWorld/Custom Types"),
+                newQualifiedName("Custom Types"),
+                LocalizedText.english("Custom Types")
+        );
+        //Register the folder to parent node
+        getNodeManager().addNode(customTypesFolder);
+        folderNode.addOrganizes(customTypesFolder);
 
         try {
             registerCustomEnumType();
-            addCustomEnumTypeVariable(folderNode);
+            addCustomEnumTypeVariable(customTypesFolder);
         } catch (Exception e) {
             logger.warn("Failed to register custom enum type", e);
         }
-
         try {
             registerCustomStructType();
-            addCustomStructTypeVariable(folderNode);
+            addCustomStructTypeVariable(customTypesFolder);
         } catch (Exception e) {
             logger.warn("Failed to register custom struct type", e);
         }
-
         try {
             registerCustomUnionType();
-            addCustomUnionTypeVariable(folderNode);
+            addCustomUnionTypeVariable(customTypesFolder);
         } catch (Exception e) {
             logger.warn("Failed to register custom struct type", e);
         }
+    }
 
-        addCustomObjectTypeAndInstance(folderNode);
+    private void addMethodNodes(UaFolderNode folderNode) {
+
+        //Create method folder
+        UaFolderNode methodNode = new UaFolderNode(
+                getNodeContext(),
+                newNodeId("HelloWorld/Method"),
+                newQualifiedName("Method"),
+                LocalizedText.english("Method")
+        );
+        //Register the folder to parent node
+        getNodeManager().addNode(methodNode);
+        folderNode.addOrganizes(methodNode);
+
+        addSqrtMethod(methodNode);
+        addAddMethod(methodNode);
+        addGenerateEventMethod(methodNode);
     }
 
     private void startBogusEventNotifier() {
@@ -228,7 +263,6 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
                             newNodeId(UUID.randomUUID()),
                             Identifiers.BaseEventType
                         );
-
                         eventNode.setBrowseName(new QualifiedName(1, "foo"));
                         eventNode.setDisplayName(LocalizedText.english("foo"));
                         eventNode.setEventId(ByteString.of(new byte[]{0, 1, 2, 3}));
@@ -259,16 +293,6 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
 
             eventThread.start();
         }
-    }
-
-    private void addVariableNodes(UaFolderNode rootNode) {
-        addArrayNodes(rootNode);
-        addScalarNodes(rootNode);
-        addAdminReadableNodes(rootNode);
-        addAdminWritableNodes(rootNode);
-        addDynamicNodes(rootNode);
-        addDataAccessNodes(rootNode);
-        addWriteOnlyNodes(rootNode);
     }
 
     private void addArrayNodes(UaFolderNode rootNode) {
@@ -610,6 +634,18 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
             folderNode.getNodeId().expanded(),
             false
         ));
+    }
+
+    private void addAddMethod(UaFolderNode folderNode){
+        UaMethodNode methodNode = UaMethodNode.builder(getNodeContext()).setNodeId(newNodeId("HelloWorld/Add(x,y)")).setBrowseName(newQualifiedName("Add(x,y)")).setDisplayName(new LocalizedText(null, "Add(x,y)")).setDescription(LocalizedText.english(" Compute the value of 'x' + 'y'")).build();
+        AddMethod addMethod = new AddMethod(methodNode);
+        methodNode.setInputArguments(addMethod.getInputArguments());
+        methodNode.setOutputArguments(addMethod.getOutputArguments());
+        methodNode.setInvocationHandler(addMethod);
+
+        getNodeManager().addNode(methodNode);
+
+        methodNode.addReference(new Reference(methodNode.getNodeId(),Identifiers.HasComponent,folderNode.getNodeId().expanded(),false));
     }
 
     private void addGenerateEventMethod(UaFolderNode folderNode) {
