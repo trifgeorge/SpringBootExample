@@ -614,7 +614,7 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
 
     private void addSqrtMethod(UaFolderNode folderNode) {
         UaMethodNode methodNode = UaMethodNode.builder(getNodeContext())
-            .setNodeId(newNodeId("HelloWorld/sqrt(x)"))
+            .setNodeId(newNodeId("HelloWorld/Method/sqrt(x)"))
             .setBrowseName(newQualifiedName("sqrt(x)"))
             .setDisplayName(new LocalizedText(null, "sqrt(x)"))
             .setDescription(
@@ -637,7 +637,7 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
     }
 
     private void addAddMethod(UaFolderNode folderNode){
-        UaMethodNode methodNode = UaMethodNode.builder(getNodeContext()).setNodeId(newNodeId("HelloWorld/Add(x,y)")).setBrowseName(newQualifiedName("Add(x,y)")).setDisplayName(new LocalizedText(null, "Add(x,y)")).setDescription(LocalizedText.english(" Compute the value of 'x' + 'y'")).build();
+        UaMethodNode methodNode = UaMethodNode.builder(getNodeContext()).setNodeId(newNodeId("HelloWorld/Method/Add(x,y)")).setBrowseName(newQualifiedName("Add(x,y)")).setDisplayName(new LocalizedText(null, "Add(x,y)")).setDescription(LocalizedText.english(" Compute the value of 'x' + 'y'")).build();
         AddMethod addMethod = new AddMethod(methodNode);
         methodNode.setInputArguments(addMethod.getInputArguments());
         methodNode.setOutputArguments(addMethod.getOutputArguments());
@@ -650,7 +650,7 @@ public class ExampleNamespace extends ManagedNamespaceWithLifecycle {
 
     private void addGenerateEventMethod(UaFolderNode folderNode) {
         UaMethodNode methodNode = UaMethodNode.builder(getNodeContext())
-            .setNodeId(newNodeId("HelloWorld/generateEvent(eventTypeId)"))
+            .setNodeId(newNodeId("HelloWorld/Method/generateEvent(eventTypeId)"))
             .setBrowseName(newQualifiedName("generateEvent(eventTypeId)"))
             .setDisplayName(new LocalizedText(null, "generateEvent(eventTypeId)"))
             .setDescription(

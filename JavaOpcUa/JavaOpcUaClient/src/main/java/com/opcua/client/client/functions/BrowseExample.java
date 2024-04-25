@@ -26,18 +26,23 @@ public class BrowseExample implements Client {
     @Override
     public void run(OpcUaClient client, CompletableFuture<OpcUaClient> future) throws Exception {
         client.connect().get();
-        browseNode("",client, Identifiers.RootFolder);
+        browseNode("", client, Identifiers.RootFolder);
 
         future.complete(client);
     }
 
-    private void browseNode(String indent, OpcUaClient client, NodeId browseRoot){
-        BrowseDescription browse = new BrowseDescription(browseRoot, BrowseDirection.Forward, Identifiers.References, true, Unsigned.uint(NodeClass.Object.getValue()|NodeClass.Variable.getValue()),Unsigned.uint(BrowseResultMask.All.getValue()));
+    private void browseNode(String indent, OpcUaClient client, NodeId browseRoot) {
+        BrowseDescription browse = new BrowseDescription(browseRoot,
+                BrowseDirection.Forward,
+                Identifiers.References,
+                true,
+                Unsigned.uint(NodeClass.Object.getValue() | NodeClass.Variable.getValue() | NodeClass.Method.getValue()),
+                Unsigned.uint(BrowseResultMask.All.getValue()));
 
-        try{
+        try {
             BrowseResult browseResult = client.browse(browse).get();
             List<ReferenceDescription> references = Arrays.asList(browseResult.getReferences());
-            for(ReferenceDescription rd: references){
+            for (ReferenceDescription rd : references) {
                 log.info("{} Node={} Identifier={}", indent, rd.getBrowseName().getName(), rd.getNodeId().getIdentifier());
 
                 rd.getNodeId().toNodeId(client.getNamespaceTable())
