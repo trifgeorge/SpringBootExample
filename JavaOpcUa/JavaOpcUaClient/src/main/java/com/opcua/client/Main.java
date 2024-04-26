@@ -1,6 +1,7 @@
 package com.opcua.client;
 
 import com.opcua.client.client.ClientRunner;
+import com.opcua.client.client.functions.BrowseAndReadExample;
 import com.opcua.client.client.functions.BrowseAsyncExample;
 import com.opcua.client.client.functions.BrowseExample;
 import com.opcua.client.client.functions.BrowseNodeExample;
@@ -29,9 +30,14 @@ public class Main {
 //        new ClientRunner(browseNodeExample).run();
 //        log.info( " BROWSE NODE EXAMPLE DONE ");
 
-        log.info( " READ NODE EXAMPLE RUNNING ");
-        ReadExample readExample = new ReadExample();
-        new ClientRunner(readExample).run();
-        log.info( " READ NODE EXAMPLE DONE ");
+//        log.info( " READ NODE EXAMPLE RUNNING ");
+//        ReadExample readExample = new ReadExample();
+//        new ClientRunner(readExample).run();
+//        log.info( " READ NODE EXAMPLE DONE ");
+
+        log.info( " BROWSE AND READ NODE EXAMPLE RUNNING ");
+        BrowseAndReadExample browseAndReadExample = new BrowseAndReadExample();
+        new ClientRunner(browseAndReadExample).run();
+        log.info( " BROWSE AND READ NODE EXAMPLE DONE ");
     }
 }
