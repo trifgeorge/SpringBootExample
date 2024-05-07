@@ -26,8 +26,8 @@ public class BrowseAndReadExample implements Client {
         // ns=1 ?
         // ns=2 -> nodes defined by companion specifications or vendor-specific extensions.
         // also works like this
-        // NodeId dynamicDouble = NodeId.parse("ns=2;s=HelloWorld/Dynamic/Double");
-        NodeId dynamicDouble = browseNode(client, Identifiers.ObjectsFolder);
+         NodeId dynamicDouble = NodeId.parse("ns=2;s=HelloWorld/Dynamic/Double");
+//        NodeId dynamicDouble = browseNode(client, Identifiers.ObjectsFolder);
 
         UaVariableNode node = client.getAddressSpace().getVariableNode(dynamicDouble);
         DataValue value = node.readValue();
