@@ -1,0 +1,38 @@
+package com.example.rules;
+
+import com.example.models.DirectoryMapping;
+
+rule "Map Ext to exterior"
+    when
+        $mapping : DirectoryMapping(shorthand.contains("Ext"))
+    then
+        $mapping.addPathPart("exterior");
+end
+
+rule "Map ctr to center"
+    when
+        $mapping : DirectoryMapping(shorthand.contains("ctr"))
+    then
+        $mapping.addPathPart("center");
+end
+
+rule "Map mmn to multimilimetric"
+    when
+        $mapping : DirectoryMapping(shorthand.contains("mmn"))
+    then
+        $mapping.addPathPart("multimilimetric");
+end
+
+rule "Map col to column"
+    when
+        $mapping : DirectoryMapping(shorthand.contains("col"))
+    then
+        $mapping.addPathPart("column");
+end
+
+rule "Map tmp to temperature"
+    when
+        $mapping : DirectoryMapping(shorthand.contains("tmp"))
+    then
+        $mapping.addPathPart("temperature");
+end
