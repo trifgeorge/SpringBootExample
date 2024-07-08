@@ -1,38 +1,30 @@
-package com.example.rules;
+Sub MoveRowsBasedOnValue()
+    Dim wsSource As Worksheet
+    Dim wsDestination As Worksheet
+    Dim lastRowSource As Long
+    Dim i As Long
+    Dim destinationRow As Long
 
-import com.example.models.DirectoryMapping;
+    ' Set the worksheets
+    Set wsSource = ThisWorkbook.Sheets("Sheet1")
+    Set wsDestination = ThisWorkbook.Sheets("Sheet2")
 
-rule "Map Ext to exterior"
-    when
-        $mapping : DirectoryMapping(shorthand.contains("Ext"))
-    then
-        $mapping.addPathPart("exterior");
-end
+    ' Find the last row in the source sheet
+    lastRowSource = wsSource.Cells(wsSource.Rows.Count, "A").End(xlUp).Row
 
-rule "Map ctr to center"
-    when
-        $mapping : DirectoryMapping(shorthand.contains("ctr"))
-    then
-        $mapping.addPathPart("center");
-end
+    ' Initialize the destination row
+    destinationRow = wsDestination.Cells(wsDestination.Rows.Count, "A").End(xlUp).Row + 1
 
-rule "Map mmn to multimilimetric"
-    when
-        $mapping : DirectoryMapping(shorthand.contains("mmn"))
-    then
-        $mapping.addPathPart("multimilimetric");
-end
-
-rule "Map col to column"
-    when
-        $mapping : DirectoryMapping(shorthand.contains("col"))
-    then
-        $mapping.addPathPart("column");
-end
-
-rule "Map tmp to temperature"
-    when
-        $mapping : DirectoryMapping(shorthand.contains("tmp"))
-    then
-        $mapping.addPathPart("temperature");
-end
+    ' Loop through each row in the source sheet
+    For i = lastRowSource To 1 Step -1
+        ' Check if the cell value in column A is "x"
+        If wsSource.Cells(i, 1).Value = "x" Then
+            ' Copy the entire row to the destination sheet
+            wsSource.Rows(i).Copy Destination:=wsDestination.Rows(destinationRow)
+            ' Delete the row from the source sheet
+            wsSource.Rows(i).Delete
+            ' Increment the destination row
+            destinationRow = destinationRow + 1
+        End If
+    Next i
+End Sub
