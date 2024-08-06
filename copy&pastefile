@@ -1,2 +1,2 @@
- private static final Pattern PASSWORD_PATTERN = Pattern.compile("\\b(password\\s*=\\s*)([^\\s]+)", Pattern.CASE_INSENSITIVE);
+ private static final Pattern PASSWORD_PATTERN = Pattern.compile("(?i)\b(?:\w+\s+)?(?:password|pwd)\s*[:=]\s*([^\s]+(?:\s+[^\s]+)*)\b", Pattern.CASE_INSENSITIVE);
     private static final String MASK = "$1*****";
