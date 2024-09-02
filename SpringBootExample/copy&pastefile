@@ -1,2 +1,40 @@
- private static final Pattern PASSWORD_PATTERN = Pattern.compile("(?i)\\b(?:\\w+\\s+)?(?:password|pwd)\\s*[:=]\\s*([^\\s]+(?:\\s+[^\\s]+)*)\\b", Pattern.CASE_INSENSITIVE);
-    private static final String MASK = "$1*****";
+[
+    {
+        "id": "flow1",
+        "type": "tab",
+        "label": "Simple Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "inject1",
+        "type": "inject",
+        "z": "flow1",
+        "name": "Inject Timestamp",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 100,
+        "wires": [["debug1"]]
+    },
+    {
+        "id": "debug1",
+        "type": "debug",
+        "z": "flow1",
+        "name": "Debug Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 350,
+        "y": 100,
+        "wires": []
+    }
+]
